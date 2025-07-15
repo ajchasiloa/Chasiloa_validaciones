@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario de Registro Moderno</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+  <form id="registroForm" action="guardar.php" method="POST" class="bg-white p-6 rounded-lg shadow-md w-full max-w-md space-y-4" novalidate>
+    <h2 class="text-2xl font-bold text-center text-gray-700">Formulario de Registro</h2>
+
+    <div>
+      <label for="nombre" class="block text-sm font-medium text-gray-600">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre"
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required minlength="3" maxlength="30" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$">
+      <p id="error-nombre" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="apellido" class="block text-sm font-medium text-gray-600">Apellido:</label>
+      <input type="text" id="apellido" name="apellido" placeholder="Ingrese su apellido"
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required minlength="3" maxlength="30" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$">
+      <p id="error-apellido" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="cedula" class="block text-sm font-medium text-gray-600">Cédula-RUC:</label>
+      <input type="text" id="cedula" name="cedula" placeholder="10 o 13 dígitos"
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required pattern="^(\d{10}|\d{13})$" maxlength="13">
+      <p id="error-cedula" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="telefono" class="block text-sm font-medium text-gray-600">Teléfono:</label>
+      <input type="text" id="telefono" name="telefono" placeholder="10 dígitos"
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required pattern="^\d{10}$" maxlength="10">
+      <p id="error-telefono" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="fechaNacimiento" class="block text-sm font-medium text-gray-600">Fecha de nacimiento:</label>
+      <input type="date" id="fechaNacimiento" name="fechaNacimiento"
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required min="1900-01-01" max="">
+      <p id="error-fechaNacimiento" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="genero" class="block text-sm font-medium text-gray-600">Género:</label>
+      <select id="genero" name="genero" class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
+        <option value="">Seleccione</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Otro">Otro</option>
+      </select>
+      <p id="error-genero" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="direccion" class="block text-sm font-medium text-gray-600">Dirección:</label>
+      <input type="text" id="direccion" name="direccion" placeholder="Dirección actual"
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required maxlength="20" pattern="^[A-Za-z0-9\s\.\,\-#]+$">
+      <p id="error-direccion" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="salario" class="block text-sm font-medium text-gray-600">Salario ($):</label>
+      <input type="number" id="salario" name="salario" placeholder="470 - 5000"
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required min="470" max="5000" step="0.01">
+      <p id="error-salario" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-600">Email:</label>
+      <input type="email" id="email" name="email" placeholder="usuario@dominio.com"
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
+      <p id="error-email" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="sitioWeb" class="block text-sm font-medium text-gray-600">Sitio Web:</label>
+      <input type="url" id="sitioWeb" name="sitioWeb" placeholder="https://..."
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required>
+      <p id="error-sitioWeb" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <div>
+      <label for="contrasena" class="block text-sm font-medium text-gray-600">Contraseña:</label>
+      <input type="password" id="contrasena" name="contrasena" placeholder="8-12 carac., may., min., #, num."
+        class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" required minlength="8" maxlength="12" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,12}$">
+      <p id="error-contrasena" class="text-red-500 text-xs mt-1 hidden"></p>
+    </div>
+
+    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
+      Enviar
+    </button>
+  </form>
+
+  <script>
+    const form = document.getElementById('registroForm');
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('fechaNacimiento').setAttribute('max', today);
+
+    const campos = [
+      { id: 'nombre', errorId: 'error-nombre' },
+      { id: 'apellido', errorId: 'error-apellido' },
+      { id: 'cedula', errorId: 'error-cedula' },
+      { id: 'telefono', errorId: 'error-telefono' },
+      { id: 'fechaNacimiento', errorId: 'error-fechaNacimiento' },
+      { id: 'genero', errorId: 'error-genero' },
+      { id: 'direccion', errorId: 'error-direccion' },
+      { id: 'salario', errorId: 'error-salario' },
+      { id: 'email', errorId: 'error-email' },
+      { id: 'sitioWeb', errorId: 'error-sitioWeb' },
+      { id: 'contrasena', errorId: 'error-contrasena' },
+    ];
+
+    const regex = {
+      letras: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+      numeros10: /^\d{10}$/,
+      numeros10o13: /^(\d{10}|\d{13})$/,
+      direccion: /^[A-Za-z0-9\s\.\,\-#]{1,20}$/,
+      contrasena: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,12}$/
+    };
+
+    function mostrarError(id, mensaje) {
+      const p = document.getElementById(id);
+      p.textContent = mensaje;
+      p.classList.remove('hidden');
+    }
+
+    function ocultarError(id) {
+      const p = document.getElementById(id);
+      p.classList.add('hidden');
+    }
+
+    campos.forEach(({id, errorId}) => {
+      const input = document.getElementById(id);
+      input.addEventListener('input', () => {
+        let val = input.value.trim();
+        let valido = true;
+        switch(id) {
+          case 'nombre':
+          case 'apellido':
+            valido = val.length >= 3 && val.length <= 30 && regex.letras.test(val);
+            if (!valido) mostrarError(errorId, '3-30 letras solo.');
+            else ocultarError(errorId);
+            break;
+          case 'cedula':
+            valido = regex.numeros10o13.test(val);
+            if (!valido) mostrarError(errorId, '10 o 13 dígitos.');
+            else ocultarError(errorId);
+            break;
+          case 'telefono':
+            valido = regex.numeros10.test(val);
+            if (!valido) mostrarError(errorId, '10 dígitos.');
+            else ocultarError(errorId);
+            break;
+          case 'fechaNacimiento':
+            valido = val >= '1900-01-01' && val <= today;
+            if (!valido) mostrarError(errorId, 'Fecha entre 1900 y hoy.');
+            else ocultarError(errorId);
+            break;
+          case 'genero':
+            valido = val !== '';
+            if (!valido) mostrarError(errorId, 'Seleccione género.');
+            else ocultarError(errorId);
+            break;
+          case 'direccion':
+            valido = val.length > 0 && val.length <= 20 && regex.direccion.test(val);
+            if (!valido) mostrarError(errorId, 'Máx 20 caracteres válidos.');
+            else ocultarError(errorId);
+            break;
+          case 'salario':
+            valido = Number(val) >= 470 && Number(val) <= 5000;
+            if (!valido) mostrarError(errorId, 'Entre 470 y 5000.');
+            else ocultarError(errorId);
+            break;
+          case 'email':
+            valido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+            if (!valido) mostrarError(errorId, 'Email inválido.');
+            else ocultarError(errorId);
+            break;
+          case 'sitioWeb':
+            try {
+              new URL(val);
+              ocultarError(errorId);
+            } catch {
+              mostrarError(errorId, 'URL inválida.');
+              valido = false;
+            }
+            break;
+          case 'contrasena':
+            valido = regex.contrasena.test(val);
+            if (!valido) mostrarError(errorId, '8-12 carac., may., min., número, símbolo.');
+            else ocultarError(errorId);
+            break;
+        }
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      let formValido = true;
+      campos.forEach(({id, errorId}) => {
+        const input = document.getElementById(id);
+        input.dispatchEvent(new Event('input')); // Forzar validación
+        const errorP = document.getElementById(errorId);
+        if (!errorP.classList.contains('hidden')) formValido = false;
+      });
+      if (!formValido) {
+        e.preventDefault();
+        alert('Por favor corrija los errores antes de enviar.');
+      }
+    });
+  </script>
+</body>
+</html>
